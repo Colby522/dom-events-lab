@@ -2,6 +2,10 @@
 
 const buttons = document.querySelectorAll('.button');
 const calculator = document.querySelector('#calculator');
+const display = document.querySelector('.display')
+const number = document.querySelectorAll('.button number')
+const operand = document.querySelectorAll('.button operator')
+const equals = document.querySelector('.button equals')
 
 /*-------------------------------- Variables --------------------------------*/
 
@@ -31,7 +35,18 @@ buttons.forEach((button) => {
     if (event.target.innerText === '*') {
       // Do something with this operator
     }
-  });
-  
+  });  
   
 /*-------------------------------- Functions --------------------------------*/
+
+function  showDisplay(input) {
+    display === 
+}
+
+function clearDisplay() {
+
+}
+
+function calculate() {
+
+}
