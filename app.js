@@ -1,52 +1,89 @@
 /*-------------------------------- Constants --------------------------------*/
 
-const buttons = document.querySelectorAll('.button');
-const calculator = document.querySelector('#calculator');
-const display = document.querySelector('.display')
-const number = document.querySelectorAll('.button number')
-const operand = document.querySelectorAll('.button operator')
-const equals = document.querySelector('.button equals')
+const buttons = document.querySelectorAll('.button')
+const calculator = document.querySelector('#calculator')
 
 /*-------------------------------- Variables --------------------------------*/
 
+let firstValue = null
+let secondValue = null
+let operation = null
+
 /*------------------------ Cached Element References ------------------------*/
+
+let display = document.querySelector('.display')
+  display.textContent = 0
+let numbers = document.querySelectorAll('.number')
+let operationButtons = document.querySelectorAll('.operator')
+let equalsButton = document.querySelector('.equals')
+let addButton = document.querySelector('#add')
+let subtractButton = document.querySelector('#subtract')
+let multiplyButton = document.querySelector('#multiply')
+let divideButton = document.querySelector('#divide')
+let clearButton = document.querySelector('#clear')
+
+/*----------------------------Functions--------------------------------------*/
+const add = () => {
+  return firstValue + secondValue
+}
+
+const subtract = () => {
+  return firstValue - secondValue
+}
+
+const multiply = () => {
+  return firstValue * secondValue
+}
+
+const divide = () => {
+  return firstValue / secondValue
+}
+
+const calculation = () => {
+  let total
+  if(operation  === '+') {
+    total = add()
+  } else if(operation === '-') {
+    total = subtract()
+  } else if(operation === '*') {
+    total = multiply()
+  } else if(operation === '/') {
+    total = divide()
+  }
+  display.textContent = total
+}
+
+const equals = () => {
+  secondValue = parseInt(display.textContent)
+  calculation()
+}
+
+const operator = (event) => {
+  firstValue = parseInt(display.textContent)
+  operation = event.target.id
+  display.textContent = 0
+}
+
+const clear = () => {
+  display.textContent = 0
+  firstValue = null
+  secondValue = null
+  operation = null
+}
 
 /*----------------------------- Event Listeners -----------------------------*/
 
-buttons.forEach((button) => {
-    button.addEventListener('click', (event) => {
-      // This log is for testing purposes to verify we're getting the correct value
-      console.log(event.target.innerText);
-      // Future logic to capture the button's value would go here...
-    });
+equalsButton.addEventListener('click', equals);
+clearButton.addEventListener('click', clear);
+
+numbers.forEach((number) => {
+  number.addEventListener('click', (event) => {
+    display.innerText = Number(
+      display.innerText + event.target.innerText
+    );
   });
+});
 
-  calculator.addEventListener('click', (event) => {
-    // This log is for testing purposes to verify we're getting the correct value
-    // You have to click a button to see this log
-    console.log(event.target.innerText);
-  
-    // Example
-    if (event.target.classList.contains('number')) {
-      // Do something with a number
-    }
-  
-    // Example
-    if (event.target.innerText === '*') {
-      // Do something with this operator
-    }
-  });  
-  
-/*-------------------------------- Functions --------------------------------*/
-
-function  showDisplay(input) {
-    display === 
-}
-
-function clearDisplay() {
-
-}
-
-function calculate() {
-
-}
+operationButtons.forEach((operation) => {
+  operation.addEventListener('click', operator);
+});
