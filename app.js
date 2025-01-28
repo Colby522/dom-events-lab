@@ -41,13 +41,13 @@ const divide = () => {
 
 const calculation = () => {
   let total
-  if(operation  === '+') {
+  if(operation  === 'add') {
     total = add()
-  } else if(operation === '-') {
+  } else if(operation === 'subtract') {
     total = subtract()
-  } else if(operation === '*') {
+  } else if(operation === 'multiply') {
     total = multiply()
-  } else if(operation === '/') {
+  } else if(operation === 'divide') {
     total = divide()
   }
   display.textContent = total
